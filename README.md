@@ -2,7 +2,7 @@
 
 # Airbnb JavaScript Style Guide() {
 
-**คู่มือแนะนำการเขียนจาวาสคิปต์ที่เข้าท่ามากที่สุด** โดย [Airbnb](https://github.com/airbnb/javascript/)
+**คู่มือแนะนำการเขียนจาวาสคริปต์ที่เข้าท่ามากที่สุด** โดย [Airbnb](https://github.com/airbnb/javascript/)
 > คู่มือนี้ผมแปลโดยใส่คำอธิบายและตัวอย่างเพิ่มเติม (ไม่แปลตรงตัว) เพื่อให้ผู้อ่านสามารถเข้าใจเนื้อหาต่างๆได้ดียิ่งขึ้น ในกรณีที่เจอข้อผิดพลาดใดๆ กรุณา Fork และ PR ถ้ามีคำถามสามารถเปิด Issue ได้เลยครับ หวังว่าคู่มือนี้จะมีประโยชน์ต่อผู้อ่านไม่มากก็น้อย :pray:
 
 ## <a name='TOC'>สารบัญ</a>
@@ -299,7 +299,7 @@
     }
     ```
 
-  - อย่าตั้งชื่อพารามิเตอร์ว่า `arguments` เพราะมันจะไปทับออบเจ็กต์ `arguments` ที่จาวาสคิปต์มีให้ในทุกๆฟังก์ชัน
+  - อย่าตั้งชื่อพารามิเตอร์ว่า `arguments` เพราะมันจะไปทับออบเจ็กต์ `arguments` ที่จาวาสคริปต์มีให้ในทุกๆฟังก์ชัน
 
     ```javascript
     // ไม่ดี
@@ -319,7 +319,7 @@
 
 ## Properties
 
-  - ใช้จุด `.` ในการเข้าถึงพรอพเพอตี้ (properties).
+  - ใช้จุด `.` ในการเข้าถึงพรอพเพอร์ตี้ี้ (properties).
 
     ```javascript
     var luke = {
@@ -334,7 +334,7 @@
     var isJedi = luke.jedi;
     ```
 
-  - ใช้วงเล็บกล้ามปู `[]` ในการเข้าถึงพรอพเพอตี้ โดยการใช้ตัวแปร
+  - ใช้วงเล็บกล้ามปู `[]` ในการเข้าถึงพรอพเพอร์ตี้ี้ โดยการใช้ตัวแปร
 
     ```javascript
     var luke = {
@@ -343,7 +343,7 @@
     };
 
     function getProp(prop) {
-      return luke[prop]; //  เข้าถึงพรอพเพอตี้ของ luke โดยใช้ตัวแปร prop
+      return luke[prop]; //  เข้าถึงพรอพเพอร์ตี้ี้ของ luke โดยใช้ตัวแปร prop
     }
 
     var isJedi = getProp('jedi');
@@ -406,7 +406,7 @@
     var i;
     ```
 
-  - ประกาศตัวแปรทั้งหมดไว้ข้างบนสุดของฟังก์ชัน ซึ่งจะทำให้เราไม่สับสนและยังป้องกันการ hoisting ของจาวาสคิปต์ได้อีกด้วย
+  - ประกาศตัวแปรทั้งหมดไว้ข้างบนสุดของฟังก์ชัน ซึ่งจะทำให้เราไม่สับสนและยังป้องกันการ hoisting ของจาวาสคริปต์ได้อีกด้วย
 
     ```javascript
     // ไม่ดี
@@ -469,7 +469,7 @@
 
 ## Hoisting
 
-  - เวลาคอมไพล์จาวาสคิปต์จะอ่านตัวแปรที่ประกาศไว้ก่อนหน้าสิ่งอื่นๆในสโคป แต่ค่าที่ใส่ให้ตัวแปรจะยังไม่ถูกอ่าน
+  - เวลาคอมไพล์จาวาสคริปต์จะอ่านตัวแปรที่ประกาศไว้ก่อนหน้าสิ่งอื่นๆในสโคป แต่ค่าที่ใส่ให้ตัวแปรจะยังไม่ถูกอ่าน
 
     ```javascript
     // สมมุติว่าเราไม่ได้ประกาศตัวแปร notDefined
@@ -477,7 +477,7 @@
       console.log(notDefined); // => throws a ReferenceError
     }
 
-    // ประกาศตัวแปรหลังจากใช้งาน ในจาวาสคิปต์นั้นทำได้ (ไม่มี error)
+    // ประกาศตัวแปรหลังจากใช้งาน ในจาวาสคริปต์นั้นทำได้ (ไม่มี error)
     // เพราะว่าตัวแปรจะถูกคอมไพล์และดึงขึ้นมาไว้ข้างบนสโคป
     // แต่ค่าของตัวแปรไม่ได้ถูกดึงขึ้นมาด้วย จึงทำให้ค่าของตัวแปรนั้นเป็น undefined
     function example() {
@@ -556,7 +556,7 @@
 ## Comparison Operators & Equality
 
   - ใช้ `===` และ `!==` แทน `==` และ `!=`
-  - การเปรียบเทียบโอเปอเรเตอร์ จาวาสคิปต์จะแปลงค่าเหล่านั้นเป็น boolean โดยใช้ฟังก์ชัน `ToBoolean` และใช้กฏต่างๆดังต่อไปนี้:
+  - การเปรียบเทียบโอเปอเรเตอร์ จาวาสคริปต์จะแปลงค่าเหล่านั้นเป็น boolean โดยใช้ฟังก์ชัน `ToBoolean` และใช้กฏต่างๆดังต่อไปนี้:
 
     + **Objects** ได้ผลลัพธ์เป็น **true**
     + **Undefined** ได้ผลลัพธ์เป็น **false**
@@ -1165,7 +1165,7 @@
     });
     ```
 
-  - ขึ้นต้นด้วยขีดล่าง (`_`) เมื่อต้องการตั้งชื่อพรอพเพอตี้ที่เป็น Private
+  - ขึ้นต้นด้วยขีดล่าง (`_`) เมื่อต้องการตั้งชื่อพรอพเพอร์ตี้ี้ที่เป็น Private
 
     ```javascript
     // ไม่ดี
@@ -1245,7 +1245,7 @@
 
 ## Accessors
 
-  - Accessor functions (ฟังก์ชันที่ใช้ในการเข้าถึงพรอพเพอตี้) ไม่จำเป็นต้องมีก็ได้
+  - Accessor functions (ฟังก์ชันที่ใช้ในการเข้าถึงพรอพเพอร์ตี้ี้) ไม่จำเป็นต้องมีก็ได้
   - แต่ถ้ามีควรจะตั้งชื่อในรูปแบบ getVal() และ setVal('hello')
 
     ```javascript
@@ -1262,7 +1262,7 @@
     dragon.setAge(25);
     ```
 
-  - ถ้าพรอพเพอตี้เป็นค่าบูลีน (boolean) ให้ใช้ isVal() หรือ hasVal().
+  - ถ้าพรอพเพอร์ตี้ี้เป็นค่าบูลีน (boolean) ให้ใช้ isVal() หรือ hasVal().
 
     ```javascript
     // ไม่ดี
@@ -1299,7 +1299,7 @@
 
 ## Constructors
 
-  - ควรเพิ่มเมท็อตของออบเจ็คต์ ผ่านทาง Prototype ด้วยการใช้จุด `.` เพราะจะเป็นการเพิ่มพรอพเพอตี้ ไม่ใช่การสร้างออบเจ็คต์ใหม่ ถ้าสร้างออบเจ็คต์ใหม่ จะไม่สามารถทำ Inheritance ได้อีก
+  - ควรเพิ่มเมท็อตของออบเจ็คต์ ผ่านทาง Prototype ด้วยการใช้จุด `.` เพราะจะเป็นการเพิ่มพรอพเพอร์ตี้ี้ ไม่ใช่การสร้างออบเจ็คต์ใหม่ ถ้าสร้างออบเจ็คต์ใหม่ จะไม่สามารถทำ Inheritance ได้อีก
 
     ```javascript
     function Jedi() {
@@ -1384,7 +1384,7 @@
 
 ## Events
 
-  - เมื่อทำการเชื่อมต่ออีเว้นต์ ให้ส่งค่าที่เป็นออบเจ็คต์ไป ซึ่งจะดีกว่าการส่งค่าแบบธรรมดา เพราะจะช่วยให้ตัวเมท็อตที่รับค่าสามารถแก้ไขค่าและเพิ่มพรอพเพอตี้ได้ง่ายขึ้น
+  - เมื่อทำการเชื่อมต่ออีเว้นต์ ให้ส่งค่าที่เป็นออบเจ็คต์ไป ซึ่งจะดีกว่าการส่งค่าแบบธรรมดา เพราะจะช่วยให้ตัวเมท็อตที่รับค่าสามารถแก้ไขค่าและเพิ่มพรอพเพอร์ตี้ี้ได้ง่ายขึ้น
 
     ```js
     // ไม่ดี
@@ -1552,7 +1552,7 @@
     + [JSHint](http://www.jshint.com/) - [Airbnb Style .jshintrc](https://github.com/airbnb/javascript/blob/master/linters/jshintrc)
     + [JSCS](https://github.com/jscs-dev/node-jscs) - [Airbnb Style Preset](https://github.com/jscs-dev/node-jscs/blob/master/presets/airbnb.json)
 
-**ข้อมูลแนะนำการเขียนจาวาสคิปต์อื่นๆ**
+**ข้อมูลแนะนำการเขียนจาวาสคริปต์อื่นๆ**
 
   - [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
   - [jQuery Core Style Guidelines](http://docs.jquery.com/JQuery_Core_Style_Guidelines)
@@ -1616,7 +1616,7 @@
 
 ## In the Wild
 
-  รายชื่อองกรค์ที่ทำตามคู่มือแนะนำการเขียนจาวาสคิปต์นี้ ถ้าองค์กรของคุณทำตามคู่มือนี้เช่นกัน กรุณาส่ง Pull request หรือเปิด Issue แล้วเราจะเพิ่มคุณเข้าไปในรายชื่อต่อไปนี้
+  รายชื่อองกรค์ที่ทำตามคู่มือแนะนำการเขียนจาวาสคริปต์นี้ ถ้าองค์กรของคุณทำตามคู่มือนี้เช่นกัน กรุณาส่ง Pull request หรือเปิด Issue แล้วเราจะเพิ่มคุณเข้าไปในรายชื่อต่อไปนี้
 
   - **Aan Zee**: [AanZee/javascript](https://github.com/AanZee/javascript)
   - **Adult Swim**: [adult-swim/javascript](https://github.com/adult-swim/javascript)
@@ -1667,7 +1667,7 @@
 
 ## Translation
 
-คู่มือแนะนำการเขียนจาวาสคิปต์นี้ได้ถูกแปลเป็นภาษาต่างๆมากมายดังต่อไปนี้:
+คู่มือแนะนำการเขียนจาวาสคริปต์นี้ได้ถูกแปลเป็นภาษาต่างๆมากมายดังต่อไปนี้:
 
   - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [armoucar/javascript-style-guide](https://github.com/armoucar/javascript-style-guide)
   - ![bg](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bulgaria.png) **Bulgarian**: [borislavvv/javascript](https://github.com/borislavvv/javascript)
@@ -1683,11 +1683,11 @@
   - ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Spain.png) **Spanish**: [paolocarrasco/javascript-style-guide](https://github.com/paolocarrasco/javascript-style-guide)
   - ![th](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Thailand.png) **Thai**: [lvarayut/javascript-style-guide](https://github.com/lvarayut/javascript-style-guide)
 
-## คู่มือแนะนำการเขียนจาวาสคิปต์
+## คู่มือแนะนำการเขียนจาวาสคริปต์
 
   - [อ้างอิง](https://github.com/airbnb/javascript/wiki/The-JavaScript-Style-Guide-Guide)
 
-## พูดคุยกับพวกเราเกี่ยวกับจาวาสคิปต์
+## พูดคุยกับพวกเราเกี่ยวกับจาวาสคริปต์
 
   - ติดต่อเราบน [gitter](https://gitter.im/airbnb/javascript).
 
