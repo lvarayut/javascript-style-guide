@@ -260,7 +260,7 @@
 
 ## Functions
 
-  - Function expressions - การประกาศฟังก์ชันและใช้ตัวแปรในการอ้างอิงฟังก์ชันดังกล่าว ดังตัวอย่างต่อไปนี้
+  - Function expressions - การประกาศฟังก์ชันและใช้ตัวแปรในการอ้างอิงฟังก์ชันดังกล่าว (อาจจะไม่ใช้ตัวแปรในกรณีที่เป็น Anonymous function)  ดังตัวอย่างต่อไปนี้
 
     ```javascript
     // anonymous function expression
@@ -279,8 +279,8 @@
     })();
     ```
 
-  - อย่าประกาศฟังก์ชันประเภท Function Declaration ไว้ภายใน if, else, while, และอื่นๆ เพราะบราวเซอร์จะตีความหมายผิด ถ้าจำเป็นต้องประกาศ ให้ประกาศในรูปแบบของ Function Expression
-  - **หมายเหตุ:** ECMA-262 บอกไว้ว่าใน if, else, while, และอื่นๆ จะต้องประกอบไปด้วย statements เท่านั้น ซึ่งการประกาศฟังก์ชันประเภท Function Declaration ไม่ใช่ statement [อ่านเพิ่มเติมเกี่ยวกับ  ECMA-262](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97).
+  - อย่าประกาศฟังก์ชันประเภท Function Declarations ไว้ภายใน if, else, while, และอื่นๆ เพราะบราวเซอร์จะตีความหมายผิด ถ้าจำเป็นต้องประกาศ ให้ประกาศในรูปแบบของ Function Expressions
+  - **หมายเหตุ:** ECMA-262 บอกไว้ว่าใน if, else, while, และอื่นๆ จะต้องประกอบไปด้วย statements เท่านั้น ซึ่งการประกาศฟังก์ชันประเภท Function Declarations ไม่ใช่ statement [อ่านเพิ่มเติมเกี่ยวกับ  ECMA-262](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97)
 
     ```javascript
     // ไม่ดี
@@ -319,7 +319,7 @@
 
 ## Properties
 
-  - ใช้จุด `.` ในการเข้าถึงพรอพเพอร์ตี้ (properties).
+  - ใช้จุด `.` ในการเข้าถึงพรอพเพอร์ตี้ (properties)
 
     ```javascript
     var luke = {
@@ -547,7 +547,7 @@
     }
     ```
 
-  - อ่านเพิ่มเติมได้ที่ [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting) โดย [Ben Cherry](http://www.adequatelygood.com/).
+  - อ่านเพิ่มเติมได้ที่ [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting) โดย [Ben Cherry](http://www.adequatelygood.com/)
 
 **[[⬆ กลับไปด้านบน]](#TOC)**
 
@@ -572,7 +572,7 @@
     }
     ```
 
-  - ใช้ Shortcuts.
+  - ใช้ Shortcuts
 
     ```javascript
     // ไม่ดี
@@ -850,7 +850,7 @@
     })(this);↵
     ```
 
-  - ใส่ย่อหน้าเวลาเรียกใช้เมท็อตแบบต่อเนื่อง (method chaining) ให้วางจุด `.` ไว้ด้านหน้าเสมอ เพื่อบอกว่าเป็นการเรียกเมท็อต
+  - ใส่ย่อหน้าเวลาเรียกใช้เมท็อตแบบต่อเนื่อง (Method chaining) ให้วางจุด `.` ไว้ด้านหน้าเสมอ เพื่อบอกว่าเป็นการเรียกเมท็อต
 
     ```javascript
     // ไม่ดี
@@ -1070,7 +1070,7 @@
     var val = parseInt(inputValue, 10);
     ```
 
-  - ในบางกรณีที่ต้องการให้ได้ประสิทธิภาพสูงสุดด้วยการใช้ Bitshift แทนการแปลงค่าโดยใช้ `parseInt` สามารถอ่านเพิ่มเติมได้ที่ [performance reasons](http://jsperf.com/coercion-vs-casting/3), มีคอมเม้นต์ต่างๆที่อธิบายถึงเรื่องประสิทธิภาพ
+  - ในบางกรณีที่ต้องการให้ได้ประสิทธิภาพสูงสุดด้วยการใช้ Bitshift แทนการแปลงค่าโดยใช้ `parseInt` สามารถอ่านเพิ่มเติมได้ที่ [performance reasons](http://jsperf.com/coercion-vs-casting/3) นอกจากนั้นควรใส่คอมเม้นต์ต่างๆอธิบายเหตุผลไว้ด้วย
 
     ```javascript
     // ดี
@@ -1327,7 +1327,7 @@
     };
     ```
 
-  - เมท็อตควรคืนค่าเป็นออบเจ็ค `this` เพื่อช่วยให้สามารถทำ Method chaining.
+  - เมท็อตควรคืนค่าเป็นออบเจ็ค `this` เพื่อช่วยให้สามารถทำ Method chaining
 
     ```javascript
     // ไม่ดี
@@ -1506,7 +1506,7 @@
 
 ## ECMAScript 5 Compatibility
 
-  - อ่านเพิ่มเติมได้ที่ [Kangax](https://twitter.com/kangax/)'s ES5 [compatibility table](http://kangax.github.com/es5-compat-table/).
+  - อ่านเพิ่มเติมได้ที่ [Kangax](https://twitter.com/kangax/)'s ES5 [compatibility table](http://kangax.github.com/es5-compat-table/)
 
 **[[⬆ กลับไปด้านบน]](#TOC)**
 
