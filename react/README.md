@@ -70,4 +70,80 @@
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+## Naming
+
+  - **นามสกุลไฟล์**: ใช้ `.jsx` เสมอ สำหรับคอมโพเน้นท์ของ React.
+  - **ชื่อไฟล์**: ควรตั้งชื่อในรูปแบบของ PascalCase (ขึ้นต้นทุกคำด้วยตัวใหญ่) ตัวอย่างเช่น `ReservationCard.jsx`
+  - **ชื่อตัวแปร**: ควรตั้งชื่อในรูปแบบของ PascalCase สำหรับคอมโพเน้นท์ของ React และ camelCase (ขึ้นต้นด้วยตัวเล็กและคำต่อไปขึ้นต้นด้วยตัวใหญ่) สำหรับ Instance อ่านเพิ่มเติมจากกฏของ Eslint: [`react/jsx-pascal-case`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md)
+
+    ```javascript
+    // ไม่ดี
+    import reservationCard from './ReservationCard'; // ควรใช้ PascalCase
+
+    // ดี
+    import ReservationCard from './ReservationCard';
+
+    // ไม่ดี
+    const ReservationItem = <ReservationCard />; // ควรใช้ camelCase
+
+    // ดี
+    const reservationItem = <ReservationCard />;
+    ```
+
+  - **ชื่อคอมโพเน้นท์**: ควรตั้งให้เหมือนชื่อไฟล์ ตัวอย่างเช่น ไฟล์ชื่อ `ReservationCard.jsx` ควรตั้งชื่อคอมโพเน้นท์เป็น `ReservationCard` อย่างไรก็ตาม คอมโพเน้นท์ที่เป็นคอมโพเน้นท์หลักของแต่ละโฟเดอร์ให้ตั้งชื่อไฟล์ว่า `index.jsx` และตั้งชื่อคอมโพเน้นท์เป็นชื่อของโฟเดอร์แทน (เพราะสะดวกต่อการอิมพอร์ต เนื่องจากสามารถอิมพอร์ตจากชื่อโฟเดอร์ได้เลย)
+
+    ```javascript
+    // ไม่ดี
+    import Footer from './Footer/Footer';
+
+    // ไม่ดี
+    import Footer from './Footer/index';
+
+    // ดี
+    import Footer from './Footer'; // ระบบจะทำการอิมพอร์ตไฟล์ ./Footer/index.js ให้อัตโนมัติ
+    ```
+
+## Declaration
+
+  - ไม่ควรใช้พรอพเพอร์ตี้ `displayName` ในการตั้งชื่อคอมโพเน้นท์ แต่ควรตั้งชื่อคอมโพเน้นท์ตอนที่ทำการเอ็กพอร์ตแทน
+
+    ```javascript
+    // ไม่ดี
+    export default React.createClass({
+      displayName: 'ReservationCard',
+      // โค้ดอื่นๆ
+    });
+
+    // ดี
+    export default class ReservationCard extends React.Component {
+    }
+    ```
+
+## Alignment
+
+  - การจัดรูปแบบโค้ดของ JSX นั้นให้ทำตามกฏของ Eslint: [`react/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md)
+
+    ```javascript
+    // ไม่ดี
+    <Foo superLongParam="bar"
+         anotherSuperLongParam="baz" />
+
+    // ดี
+    <Foo
+      superLongParam="bar"
+      anotherSuperLongParam="baz"
+    />
+
+    // ถ้าพรอพเพอร์ตี้ไม่ยาวเกินไปสามารถใส่ไว้ในบรรทัดเดียวกันได้
+    <Foo bar="bar" />
+
+    // อิลิเม้นท์ภายในคอมโพเน้นท์ให้จัดย่อหน้าตามปกติ
+    <Foo
+      superLongParam="bar"
+      anotherSuperLongParam="baz"
+    >
+      <Quux /> // อิลิเม้นท์ย่อหน้าเข้ามาตามปกติ
+    </Foo>
+    ```
+
+**[⬆ กลับไปด้านบน](#table-of-contents)**
