@@ -146,4 +146,76 @@
     </Foo>
     ```
 
+## Quotes
+
+  - ใช้เขี้ยวคู่ (Double quotes) `""` สำหรับ JSX เสมอ แต่สำหรับโค้ดจาวาสคริปต์ทั่วไปให้ใช้เขี้ยวเดี่ยว (Single quotes) `''`  อ่านเพิ่มเติมจากกฏของ Eslint: [`jsx-quotes`](http://eslint.org/docs/rules/jsx-quotes)
+
+  > - ทำไม? ในกรณีที่มีอักขระพิเศษภายในแอททริบิวต์ของ JSX [จะไม่สามารถใส่ Escaped quotes ได้](http://eslint.org/docs/rules/jsx-quotes) (ปกติในภาษาจาวาสคริปต์จะสามารถใส่สัญลักษณ์ \\ เพื่อทำการ Escape อักขระพิเศษนั้นๆ แต่ใน JSX ไม่สามารถใช้ได้) และในภาษาอังกฤษมีคำที่มีอักขระพิเศษเขี้ยวเดี่ยวอยู่เยอะพอสมควร จึงควรใช้เขี้ยวคู่เพื่อให้ง่ายต่อการพิมพ์ ตัวอย่างเช่น `"don't"`
+  > - ปกติแล้วแอททริบิวต์ของ HTML จะใช้เขี้ยวคู่เสมอ ดังนั้น JSX ควรจะทำตามกฎนั้นเช่นกัน
+
+    ```javascript
+    // ไม่ดี
+    <Foo bar='bar' />
+
+    // ดี
+    <Foo bar="bar" />
+
+    // ไม่ดี
+    <Foo style={{ left: "20px" }} />
+
+    // ดี
+    <Foo style={{ left: '20px' }} />
+    ```
+
+## Spacing
+
+  - ควรเว้นวรรคหนึ่งทีก่อนทำการปิดแท็คเสมอ
+
+    ```javascript
+    // ไม่ดี
+    <Foo/>
+
+    // แย่
+    <Foo                 />
+
+    // ไม่ดี
+    <Foo
+     />
+
+    // ดี
+    <Foo />
+    ```
+
+## Props
+
+  - ควรตั้งชื่อพรอพเพอร์ตี้ในรูปแบบ camelCase เสมอ
+
+    ```javascript
+    // ไม่ดี
+    <Foo
+      UserName="hello"
+      phone_number={12345678}
+    />
+
+    // ดี
+    <Foo
+      userName="hello"
+      phoneNumber={12345678}
+    />
+    ```
+
+  - พรอพเพอร์ตี้ที่มีค่าเป็น `true` ควรใส่แค่ชื่อพรอพเพอร์ตี้อย่างเดียวโดยไม่ต้องระบุค่า (React จะใส่ค่า `true` ให้อัตโนมัติ) อ่านเพิ่มเติมจากกฏของ Eslint: [`react/jsx-boolean-value`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md)
+
+    ```javascript
+    // ไม่ดี
+    <Foo
+      hidden={true}
+    />
+
+    // ดี
+    <Foo
+      hidden
+    />
+    ```
+
 **[⬆ กลับไปด้านบน](#table-of-contents)**
