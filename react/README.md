@@ -169,7 +169,7 @@
 
 ## Spacing
 
-  - ควรเว้นวรรคหนึ่งทีก่อนทำการปิดแท็คเสมอ
+  - ควรเว้นวรรคหนึ่งทีก่อนทำการปิดแท็ก (Tag)เสมอ
 
     ```javascript
     // ไม่ดี
@@ -217,5 +217,217 @@
       hidden
     />
     ```
+
+  ## Parentheses
+
+  - ควรใส่วงเล็บครอบ JSX ไว้ ในกรณีที่โค้ดมีมากกว่าหนึ่งบรรทัด อ่านเพิ่มเติมจากกฏของ Eslint: [`react/wrap-multilines`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/wrap-multilines.md)
+
+    ```javascript
+    // ไม่ดี
+    render() {
+      return <MyComponent className="long body" foo="bar">
+               <MyChild />
+             </MyComponent>;
+    }
+
+    // ดี
+    render() {
+      return (
+        <MyComponent className="long body" foo="bar">
+          <MyChild />
+        </MyComponent>
+      );
+    }
+
+    // ดี
+    render() {
+      const body = <div>hello</div>; // มีแค่บรรทัดเดียว ไม่ใส่วงเล็บจะทำให้อ่านง่ายขึ้น
+      return <MyComponent>{body}</MyComponent>;
+    }
+    ```
+
+## Tags
+
+  - ควรจะปิดแท็ก (Tag) ในตัวเองโดยใช้ `/>` ในกรณีที่ภายในแท็กนั้นไม่ประกอบไปด้วยแท็กอื่น อ่านเพิ่มเติมจากกฏของ Eslint: [`react/self-closing-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md)
+
+    ```javascript
+    // ไม่ดี
+    <Foo className="stuff"></Foo> // ไม่มีแท็กอื่นภายใน Foo เพราะฉะนั้นควรจะปิดแท็กในตัวมันเอง
+
+    // ดี
+    <Foo className="stuff" />
+    ```
+
+  - ถ้าคอมโพเน้นท์มีพรอพเพอร์ตี้หลายบรรทัด ควรจะปิดแท็กในบรรทัดใหม่เสมอ อ่านเพิ่มเติมจากกฏของ Eslint: [`react/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md)
+
+    ```javascript
+    // ไม่ดี
+    <Foo
+      bar="bar"
+      baz="baz" />
+
+    // ดี
+    <Foo
+      bar="bar"
+      baz="baz"
+    />
+    ```
+
+## Methods
+
+  - ใช้ Arrow function เพื่อครอบตัวแปรภายใน (Local variable)
+
+    ```javascript
+    function ItemList(props) {
+      return (
+        <ul>
+          {props.items.map((item, index) => (
+            <Item
+              key={item.key}
+              onClick={() => doSomethingWith(item.name, index)}
+            />
+          ))}
+        </ul>
+      );
+    }
+    ```
+
+  - เมื่อต้องการใช้ฟังก์ชัน `bind()` ในการผูกอีเว้นท์ ควรทำการเรียกใช้ฟังก์ชันในคอนสตรัคเตอร์เสมอ อ่านเพิ่มเติมจากกฏของ Eslint: [`react/jsx-no-bind`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
+
+  > ทำไม? การเรียกฟังก์ชัน bind() ภายในเมท็อต `render()`จะสร้างฟังชันท์ใหม่ทุกครั้งเมื่อมีการเรียกใช้เมท็อต ซึ่งส่งผลกระทบต่อประสิทธิภาพของแอพพลิเคชั่น
+
+    ```javascript
+    // ไม่ดี
+    class extends React.Component {
+      onClickDiv() {
+        // โค้ดอื่นๆ
+      }
+
+      render() {
+        return <div onClick={this.onClickDiv.bind(this)} />
+      }
+    }
+
+    // ดี
+    class extends React.Component {
+      constructor(props) {
+        super(props);
+
+        this.onClickDiv = this.onClickDiv.bind(this);
+      }
+
+      onClickDiv() {
+        // โค้ดอื่นๆ
+      }
+
+      render() {
+        return <div onClick={this.onClickDiv} />
+      }
+    }
+    ```
+
+  - อย่าใส่ขีดล่างนำหน้าเเมท็อตในคอมโพเน้นท์ของ React
+
+    ```javascript
+    // ไม่ดี
+    React.createClass({
+      _onClickSubmit() {
+        // โค้ดอื่นๆ
+      },
+
+      // โค้ดอื่นๆ
+    });
+
+    // ดี
+    class extends React.Component {
+      onClickSubmit() {
+        // โค้ดอื่นๆ
+      }
+
+      // โค้ดอื่นๆ
+    }
+    ```
+
+## Ordering
+
+  - ควรเรียงลำดับเมท็อตภายใน `class extends React.Component` ดังต่อไปนี้:
+
+  1. optional `static` methods
+  1. `constructor`
+  1. `getChildContext`
+  1. `componentWillMount`
+  1. `componentDidMount`
+  1. `componentWillReceiveProps`
+  1. `shouldComponentUpdate`
+  1. `componentWillUpdate`
+  1. `componentDidUpdate`
+  1. `componentWillUnmount`
+  1. *clickHandlers or eventHandlers* like `onClickSubmit()` or `onChangeDescription()`
+  1. *getter methods for `render`* like `getSelectReason()` or `getFooterContent()`
+  1. *Optional render methods* like `renderNavigation()` or `renderProfilePicture()`
+  1. `render`
+
+  - วิธีการประกาศ `propTypes`, `defaultProps`, `contextTypes` และอื่นๆ
+
+    ```javascript
+    import React, { PropTypes } from 'react';
+
+    const propTypes = {
+      id: PropTypes.number.isRequired,
+      url: PropTypes.string.isRequired,
+      text: PropTypes.string,
+    };
+
+    const defaultProps = {
+      text: 'Hello World',
+    };
+
+    class Link extends React.Component {
+      static methodsAreOk() {
+        return true;
+      }
+
+      render() {
+        return <a href={this.props.url} data-id={this.props.id}>{this.props.text}</a>
+      }
+    }
+
+    Link.propTypes = propTypes;
+    Link.defaultProps = defaultProps;
+
+    export default Link;
+    ```
+
+  - หากสร้างคอมโพนเน้นท์ด้วย `React.createClass` ควรเรียงลำดับพรอพเพอร์ตี้ดังต่อไปนี้ อ่านเพิ่มเติมจากกฏของ Eslint: [`react/sort-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md)
+
+  1. `displayName`
+  1. `propTypes`
+  1. `contextTypes`
+  1. `childContextTypes`
+  1. `mixins`
+  1. `statics`
+  1. `defaultProps`
+  1. `getDefaultProps`
+  1. `getInitialState`
+  1. `getChildContext`
+  1. `componentWillMount`
+  1. `componentDidMount`
+  1. `componentWillReceiveProps`
+  1. `shouldComponentUpdate`
+  1. `componentWillUpdate`
+  1. `componentDidUpdate`
+  1. `componentWillUnmount`
+  1. *clickHandlers or eventHandlers* like `onClickSubmit()` or `onChangeDescription()`
+  1. *getter methods for `render`* like `getSelectReason()` or `getFooterContent()`
+  1. *Optional render methods* like `renderNavigation()` or `renderProfilePicture()`
+  1. `render`
+
+## `isMounted`
+
+  - อย่าใช้ฟังก์ชัน `isMounted` อ่านเพิ่มเติมจากกฏของ Eslint: [`react/no-is-mounted`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-is-mounted.md)
+
+  > ทำไม? เพราะว่า [`isMounted` เป็นแพทเทิร์นที่ควรหลีกเลี่ยง][anti-pattern] ซึ่งมันไม่สามารถใช้ได้ในคลาสของ ES6 นอกจากนั้นฟังก์ชันนี้จะถูกลบในอนาคต
+
+  [anti-pattern]: https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
 
 **[⬆ กลับไปด้านบน](#table-of-contents)**
