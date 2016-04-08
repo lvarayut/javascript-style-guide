@@ -9,7 +9,7 @@
  - [ES5](es5/)
  - [React](react/)
 
-## Table of Contents
+## <a name='TOC'>สารบัญ</a>
 
   1. [Types](#types)
   1. [References](#references)
@@ -81,7 +81,7 @@
     console.log(foo[0], bar[0]); // => 9, 9
     ```
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 ## References
 
@@ -128,7 +128,7 @@
     console.log(b); // ReferenceError เมื่อออกนอกปีกกาที่ประกาศจะไม่สามารถเรียกใช้งานตัวแปรได้
     ```
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 ## Objects
 
@@ -274,7 +274,7 @@
     };
     ```
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 ## Arrays
 
@@ -323,7 +323,7 @@
     const nodes = Array.from(foo);
     ```
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 ## Destructuring
 
@@ -388,7 +388,7 @@
     ```
 
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 ## Strings
 
@@ -443,7 +443,7 @@
     }
     ```
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## Functions
@@ -567,7 +567,7 @@
   ```
 
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 ## Arrow Functions
 
@@ -605,7 +605,7 @@
     }, 0);
     ```
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## Constructors
@@ -716,7 +716,7 @@
     }
     ```
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## Modules
@@ -764,7 +764,7 @@
     export default es6;
     ```
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 ## Iterators and Generators
 
@@ -797,7 +797,7 @@
 
   > เพราะว่ายังไม่สามารถคอมไพล์กลับไปเป็น ES5 ได้อย่างสมบูรณ์
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## Properties
@@ -832,7 +832,7 @@
     const isJedi = getProp('jedi');
     ```
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## Variables
@@ -941,7 +941,7 @@
     }
     ```
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## Hoisting
@@ -1035,7 +1035,7 @@
 
    - อ่านเพิ่มเติมได้ที่ [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting) โดย [Ben Cherry](http://www.adequatelygood.com/)
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## Comparison Operators & Equality
@@ -1083,7 +1083,7 @@
 
   - [15.4](#15.4) <a name='15.4'></a> อ่านเพิ่มเติมได้ที่ [Truth Equality and JavaScript](http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) โดย Angus Croll.
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## Blocks
@@ -1134,7 +1134,7 @@
     ```
 
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## Comments
@@ -1225,7 +1225,7 @@
     }
     ```
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## Whitespace
@@ -1410,7 +1410,7 @@
     ```
 
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 ## Commas
 
@@ -1491,7 +1491,7 @@
     ];
     ```
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## Semicolons
@@ -1520,7 +1520,7 @@
 
     [อ่านเพิ่มเติม](http://stackoverflow.com/a/7365214/1712802).
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## Type Casting & Coercion
@@ -1597,7 +1597,7 @@
     const hasAge = !!age;
     ```
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## Naming Conventions
@@ -1731,7 +1731,7 @@
     ```
 
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## Accessors
@@ -1786,7 +1786,7 @@
     }
     ```
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## Events
@@ -1815,7 +1815,7 @@
     });
     ```
 
-  **[⬆ กลับไปด้านบน](#table-of-contents)**
+  **[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## jQuery
@@ -1877,14 +1877,14 @@
     $sidebar.find('ul').hide();
     ```
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## ECMAScript 5 Compatibility
 
   - [26.1](#26.1) <a name='26.1'></a> อ่านเพิ่มเติมได้ที่ [Kangax](https://twitter.com/kangax/)'s ES5 [compatibility table](http://kangax.github.com/es5-compat-table/)
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 ## ECMAScript 6 Styles
 
@@ -1904,7 +1904,7 @@
 1. [Iterators and Generators](#iterators-and-generators)
 1. [Modules](#modules)
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 ## Testing
 
@@ -1916,7 +1916,7 @@
     }
     ```
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## Performance
@@ -1932,7 +1932,7 @@
   - [Long String Concatenation](http://jsperf.com/ya-string-concat)
   - Loading...
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 
 ## Resources
@@ -2011,7 +2011,7 @@
   - [JavaScript Jabber](http://devchat.tv/js-jabber/)
 
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 ## In the Wild
 
@@ -2068,7 +2068,7 @@
   - **Zillow**: [zillow/javascript](https://github.com/zillow/javascript)
   - **ZocDoc**: [ZocDoc/javascript](https://github.com/ZocDoc/javascript)
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 ## Translation
 
@@ -2127,6 +2127,6 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-**[⬆ กลับไปด้านบน](#table-of-contents)**
+**[[⬆ กลับไปด้านบน]](#TOC)**
 
 # };
