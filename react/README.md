@@ -22,13 +22,13 @@
 ## Basic Rules
 
   - หนึ่งคอมโพเน้นท์ต่อหนึ่งไฟล์เท่านั้น
-    - ยกเว้นคอมโพเน้นท์ประเภท [Stateless หรือ Pure Components](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions) (คอมโพเน้นท์ที่ไม่มีการจัดการ State ในตัวเอง) สามารถที่จะเขียนรวมในไฟล์เดียวกันได้ อ่านเพิ่มเติมจากกฏของ Eslint: [`react/no-multi-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-multi-comp.md#ignorestateless).
+    - ยกเว้นคอมโพเน้นท์ประเภท [Stateless หรือ Pure Components](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions) (คอมโพเน้นท์ที่ไม่มีการจัดการ State ในตัวเอง) สามารถที่จะเขียนรวมในไฟล์เดียวกันได้ อ่านเพิ่มเติมจากกฎของ Eslint: [`react/no-multi-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-multi-comp.md#ignorestateless).
   - ใช้ JSX ร่วมกับ React เสมอ
   - อย่าใช้ `React.createElement` ยกเว้นในการณีที่ต้องจัดการกับแอพพลิเคชั่นที่มีไฟล์ที่ไม่ได้ใช้ JSX เท่านั้น
 
 ## Class vs `React.createClass` vs stateless
 
-  - ถ้าภายในคอมโพเน้นท์มีการจัดการ State และ refs ให้เลือกใช้ `class extends React.Component` แทนการใช้ `React.createClass` ยกเว้นเราต้องการใช้งาน Mixins (Mixins ใช้งานได้กับ React.createClass เท่านั้น ไม่สามารถใช้ร่วมกับคลาสของ ES6 ได้) อ่านเพิ่มเติมจากกฏของ Eslint: [`react/prefer-es6-class`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-es6-class.md) [`react/prefer-stateless-function`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-stateless-function.md)
+  - ถ้าภายในคอมโพเน้นท์มีการจัดการ State และ refs ให้เลือกใช้ `class extends React.Component` แทนการใช้ `React.createClass` ยกเว้นเราต้องการใช้งาน Mixins (Mixins ใช้งานได้กับ React.createClass เท่านั้น ไม่สามารถใช้ร่วมกับคลาสของ ES6 ได้) อ่านเพิ่มเติมจากกฎของ Eslint: [`react/prefer-es6-class`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-es6-class.md) [`react/prefer-stateless-function`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-stateless-function.md)
 
     ```javascript
     // ไม่ดี
@@ -74,7 +74,7 @@
 
   - **นามสกุลไฟล์**: ใช้ `.jsx` เสมอ สำหรับคอมโพเน้นท์ของ React.
   - **ชื่อไฟล์**: ควรตั้งชื่อในรูปแบบของ PascalCase (ขึ้นต้นทุกคำด้วยตัวใหญ่) ตัวอย่างเช่น `ReservationCard.jsx`
-  - **ชื่อตัวแปร**: ควรตั้งชื่อในรูปแบบของ PascalCase สำหรับคอมโพเน้นท์ของ React และ camelCase (ขึ้นต้นด้วยตัวเล็กและคำต่อไปขึ้นต้นด้วยตัวใหญ่) สำหรับ Instance อ่านเพิ่มเติมจากกฏของ Eslint: [`react/jsx-pascal-case`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md)
+  - **ชื่อตัวแปร**: ควรตั้งชื่อในรูปแบบของ PascalCase สำหรับคอมโพเน้นท์ของ React และ camelCase (ขึ้นต้นด้วยตัวเล็กและคำต่อไปขึ้นต้นด้วยตัวใหญ่) สำหรับ Instance อ่านเพิ่มเติมจากกฎของ Eslint: [`react/jsx-pascal-case`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md)
 
     ```javascript
     // ไม่ดี
@@ -121,7 +121,7 @@
 
 ## Alignment
 
-  - การจัดรูปแบบโค้ดของ JSX นั้นให้ทำตามกฏของ Eslint: [`react/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md)
+  - การจัดรูปแบบโค้ดของ JSX นั้นให้ทำตามกฎของ Eslint: [`react/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md)
 
     ```javascript
     // ไม่ดี
@@ -148,7 +148,7 @@
 
 ## Quotes
 
-  - ใช้เขี้ยวคู่ (Double quotes) `""` สำหรับ JSX เสมอ แต่สำหรับโค้ดจาวาสคริปต์ทั่วไปให้ใช้เขี้ยวเดี่ยว (Single quotes) `''`  อ่านเพิ่มเติมจากกฏของ Eslint: [`jsx-quotes`](http://eslint.org/docs/rules/jsx-quotes)
+  - ใช้เขี้ยวคู่ (Double quotes) `""` สำหรับ JSX เสมอ แต่สำหรับโค้ดจาวาสคริปต์ทั่วไปให้ใช้เขี้ยวเดี่ยว (Single quotes) `''`  อ่านเพิ่มเติมจากกฎของ Eslint: [`jsx-quotes`](http://eslint.org/docs/rules/jsx-quotes)
 
   > - ทำไม? ในกรณีที่มีอักขระพิเศษภายในแอททริบิวต์ของ JSX [จะไม่สามารถใส่ Escaped quotes ได้](http://eslint.org/docs/rules/jsx-quotes) (ปกติในภาษาจาวาสคริปต์จะสามารถใส่สัญลักษณ์ \\ เพื่อทำการ Escape อักขระพิเศษนั้นๆ แต่ใน JSX ไม่สามารถใช้ได้) และในภาษาอังกฤษมีคำที่มีอักขระพิเศษเขี้ยวเดี่ยวอยู่เยอะพอสมควร จึงควรใช้เขี้ยวคู่เพื่อให้ง่ายต่อการพิมพ์ ตัวอย่างเช่น `"don't"`
   > - ปกติแล้วแอททริบิวต์ของ HTML จะใช้เขี้ยวคู่เสมอ ดังนั้น JSX ควรจะทำตามกฎนั้นเช่นกัน
@@ -204,7 +204,7 @@
     />
     ```
 
-  - พรอพเพอร์ตี้ที่มีค่าเป็น `true` ควรใส่แค่ชื่อพรอพเพอร์ตี้อย่างเดียวโดยไม่ต้องระบุค่า (React จะใส่ค่า `true` ให้อัตโนมัติ) อ่านเพิ่มเติมจากกฏของ Eslint: [`react/jsx-boolean-value`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md)
+  - พรอพเพอร์ตี้ที่มีค่าเป็น `true` ควรใส่แค่ชื่อพรอพเพอร์ตี้อย่างเดียวโดยไม่ต้องระบุค่า (React จะใส่ค่า `true` ให้อัตโนมัติ) อ่านเพิ่มเติมจากกฎของ Eslint: [`react/jsx-boolean-value`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md)
 
     ```javascript
     // ไม่ดี
@@ -220,7 +220,7 @@
 
   ## Parentheses
 
-  - ควรใส่วงเล็บครอบ JSX ไว้ ในกรณีที่โค้ดมีมากกว่าหนึ่งบรรทัด อ่านเพิ่มเติมจากกฏของ Eslint: [`react/wrap-multilines`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/wrap-multilines.md)
+  - ควรใส่วงเล็บครอบ JSX ไว้ ในกรณีที่โค้ดมีมากกว่าหนึ่งบรรทัด อ่านเพิ่มเติมจากกฎของ Eslint: [`react/wrap-multilines`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/wrap-multilines.md)
 
     ```javascript
     // ไม่ดี
@@ -248,7 +248,7 @@
 
 ## Tags
 
-  - ควรจะปิดแท็ก (Tag) ในตัวเองโดยใช้ `/>` ในกรณีที่ภายในแท็กนั้นไม่ประกอบไปด้วยแท็กอื่น อ่านเพิ่มเติมจากกฏของ Eslint: [`react/self-closing-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md)
+  - ควรปิดแท็ก (Tag) ในตัวเองโดยใช้ `/>` ในกรณีที่ภายในแท็กนั้นไม่ประกอบไปด้วยแท็กอื่น อ่านเพิ่มเติมจากกฎของ Eslint: [`react/self-closing-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md)
 
     ```javascript
     // ไม่ดี
@@ -258,7 +258,7 @@
     <Foo className="stuff" />
     ```
 
-  - ถ้าคอมโพเน้นท์มีพรอพเพอร์ตี้หลายบรรทัด ควรจะปิดแท็กในบรรทัดใหม่เสมอ อ่านเพิ่มเติมจากกฏของ Eslint: [`react/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md)
+  - ถ้าคอมโพเน้นท์มีพรอพเพอร์ตี้หลายบรรทัด ควรจะปิดแท็กในบรรทัดใหม่เสมอ อ่านเพิ่มเติมจากกฎของ Eslint: [`react/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md)
 
     ```javascript
     // ไม่ดี
@@ -292,7 +292,7 @@
     }
     ```
 
-  - เมื่อต้องการใช้ฟังก์ชัน `bind()` ในการผูกอีเว้นท์ ควรทำการเรียกใช้ฟังก์ชันในคอนสตรัคเตอร์เสมอ อ่านเพิ่มเติมจากกฏของ Eslint: [`react/jsx-no-bind`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
+  - เมื่อต้องการใช้ฟังก์ชัน `bind()` ในการผูกอีเว้นท์ ควรทำการเรียกใช้ฟังก์ชันในคอนสตรัคเตอร์เสมอ อ่านเพิ่มเติมจากกฎของ Eslint: [`react/jsx-no-bind`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
 
   > ทำไม? การเรียกฟังก์ชัน bind() ภายในเมท็อต `render()`จะสร้างฟังชันท์ใหม่ทุกครั้งเมื่อมีการเรียกใช้เมท็อต ซึ่งส่งผลกระทบต่อประสิทธิภาพของแอพพลิเคชั่น
 
@@ -326,7 +326,7 @@
     }
     ```
 
-  - อย่าใส่ขีดล่างนำหน้าเเมท็อตในคอมโพเน้นท์ของ React
+  - อย่าใส่ขีดล่างนำหน้าเมท็อตในคอมโพเน้นท์ของ React
 
     ```javascript
     // ไม่ดี
@@ -398,7 +398,7 @@
     export default Link;
     ```
 
-  - หากสร้างคอมโพนเน้นท์ด้วย `React.createClass` ควรเรียงลำดับพรอพเพอร์ตี้ดังต่อไปนี้ อ่านเพิ่มเติมจากกฏของ Eslint: [`react/sort-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md)
+  - หากสร้างคอมโพนเน้นท์ด้วย `React.createClass` ควรเรียงลำดับพรอพเพอร์ตี้ดังต่อไปนี้ อ่านเพิ่มเติมจากกฎของ Eslint: [`react/sort-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md)
 
   1. `displayName`
   1. `propTypes`
@@ -424,7 +424,7 @@
 
 ## `isMounted`
 
-  - อย่าใช้ฟังก์ชัน `isMounted` อ่านเพิ่มเติมจากกฏของ Eslint: [`react/no-is-mounted`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-is-mounted.md)
+  - อย่าใช้ฟังก์ชัน `isMounted` อ่านเพิ่มเติมจากกฎของ Eslint: [`react/no-is-mounted`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-is-mounted.md)
 
   > ทำไม? เพราะว่า [`isMounted` เป็นแพทเทิร์นที่ควรหลีกเลี่ยง][anti-pattern] ซึ่งมันไม่สามารถใช้ได้ในคลาสของ ES6 นอกจากนั้นฟังก์ชันนี้จะถูกลบในอนาคต
 
