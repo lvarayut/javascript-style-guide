@@ -1,5 +1,3 @@
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
 # Airbnb JavaScript Style Guide() {
 
 **คู่มือแนะนำการเขียนจาวาสคริปต์ที่เข้าท่ามากที่สุด** โดย [Airbnb](https://github.com/airbnb/javascript/)
@@ -19,7 +17,7 @@
   1. [Strings](#strings)
   1. [Functions](#functions)
   1. [Arrow Functions](#arrow-functions)
-  1. [Constructors](#constructors)
+  1. [Classes & Constructors](#classes--constructors)
   1. [Modules](#modules)
   1. [Iterators and Generators](#iterators-and-generators)
   1. [Properties](#properties)
@@ -27,6 +25,7 @@
   1. [Hoisting](#hoisting)
   1. [Comparison Operators & Equality](#comparison-operators--equality)
   1. [Blocks](#blocks)
+  1. [Control Statements](#control-statements)
   1. [Comments](#comments)
   1. [Whitespace](#whitespace)
   1. [Commas](#commas)
@@ -37,7 +36,8 @@
   1. [Events](#events)
   1. [jQuery](#jquery)
   1. [ECMAScript 5 Compatibility](#ecmascript-5-compatibility)
-  1. [ECMAScript 6 Styles](#ecmascript-6-styles)
+  1. [ECMAScript 6+ (ES 2015+) Styles](#ecmascript-6-es-2015-styles)
+  1. [Standard Library](#standard-library)
   1. [Testing](#testing)
   1. [Performance](#performance)
   1. [Resources](#resources)
@@ -47,6 +47,7 @@
   1. [Chat With Us About Javascript](#chat-with-us-about-javascript)
   1. [Contributors](#contributors)
   1. [License](#license)
+  1. [Amendments](#amendments)
 
 ## Types
 
@@ -608,7 +609,7 @@
 **[[⬆ กลับไปด้านบน]](#TOC)**
 
 
-## Constructors
+## Classes & Constructors
 
   - [9.1](#9.1) <a name='9.1'></a> ใช้ `class` และหลีกเลี่ยงการเรียกใช้ `prototype` โดยตรง
 
@@ -713,6 +714,56 @@
       toString() {
         return `Jedi - ${this.getName()}`;
       }
+    }
+    ```
+
+  - [9.5](#9.5) <a name="9.5"></a> โดยปกติ `class` จะมี default constructor ถ้าไม่มีการระบุ constructor ใหม่ ดังนั้นการใส่ constructor ที่ว่างเปล่าจึงไม่มีความจำเป็น
+
+    ```javascript
+    // ไม่ดี
+    class Jedi {
+      constructor() {}
+
+      getName() {
+        return this.name;
+      }
+    }
+
+    // ไม่ดี
+    class Rey extends Jedi {
+      constructor(...args) {
+        super(...args);
+      }
+    }
+
+    // ดี
+    class Rey extends Jedi {
+      constructor(...args) {
+        super(...args);
+        this.name = 'Rey';
+      }
+    }
+    ```
+
+  - [9.6](#9.6) <a name="9.6"></a> หลีกเลี้ยงการมี method ของ class ที่มีชื่อเดียวกัน
+
+    > การที่มี method ที่มีชื่อซ้ำกันใน class เดียวกันจะทำให้เกิด bug
+
+    ```javascript
+    // ไม่ดี
+    class Foo {
+      bar() { return 1; }
+      bar() { return 2; }
+    }
+
+    // ดี
+    class Foo {
+      bar() { return 1; }
+    }
+
+    // ดี
+    class Foo {
+      bar() { return 2; }
     }
     ```
 
@@ -1136,10 +1187,65 @@
 
 **[[⬆ กลับไปด้านบน]](#TOC)**
 
+## Control Statements
+
+  - [17.1](#17.1) ในกรณีที่มีการใช้ control statement เช่น `if`, `while` และอื่นๆ มีความยาวเกินความยาวต่อบรรทัดสูงสุด ให้รวมกรุ๊ปแต่ละ condition และขึ้นเป็นบรรทัดใหม่
+
+    ```javascript
+    // ไม่ดี
+    if ((foo === 123 || bar === 'abc') && doesItLookGoodWhenItBecomesThatLong() && isThisReallyHappening()) {
+      thing1();
+    }
+
+    // ไม่ดี
+    if (foo === 123 &&
+      bar === 'abc') {
+      thing1();
+    }
+
+    // ไม่ดี
+    if (foo === 123
+      && bar === 'abc') {
+      thing1();
+    }
+
+    // ไม่ดี
+    if (
+      foo === 123 &&
+      bar === 'abc'
+    ) {
+      thing1();
+    }
+
+    // ดี
+    if (
+      foo === 123
+      && bar === 'abc'
+    ) {
+      thing1();
+    }
+
+    // ดี
+    if (
+      (foo === 123 || bar === "abc")
+      && doesItLookGoodWhenItBecomesThatLong()
+      && isThisReallyHappening()
+    ) {
+      thing1();
+    }
+
+    // ดี
+    if (foo === 123 && bar === 'abc') {
+      thing1();
+    }
+    ```
+
+**[[⬆ กลับไปด้านบน]](#TOC)**
+
 
 ## Comments
 
-  - [17.1](#17.1) <a name='17.1'></a> ใช้ `/** ... */` สำหรับคอมเม้นต์ที่มากกว่าหนึ่งบรรทัด และควรจะบอกประเภทและค่าของพารามิเตอร์พร้อมทั้งค่าที่จะรีเทิร์น
+  - [18.1](#18.1) <a name='18.1'></a> ใช้ `/** ... */` สำหรับคอมเม้นต์ที่มากกว่าหนึ่งบรรทัด และควรจะบอกประเภทและค่าของพารามิเตอร์พร้อมทั้งค่าที่จะรีเทิร์น
 
     ```javascript
     // ไม่ดี
@@ -1171,7 +1277,7 @@
     }
     ```
 
-  - [17.2](#17.2) <a name='17.2'></a> ใช้ `//` สำหรับคอมเม้นต์บรรทัดเดียว โดยใส่ไว้บรรทัดบนของสิ่งที่ต้องการคอมเม้นต์ และเพิ่มบรรทัดว่างไว้ด้านบนคอมเม้นต์ด้วย
+  - [18.2](#18.2) <a name='18.2'></a> ใช้ `//` สำหรับคอมเม้นต์บรรทัดเดียว โดยใส่ไว้บรรทัดบนของสิ่งที่ต้องการคอมเม้นต์ และเพิ่มบรรทัดว่างไว้ด้านบนคอมเม้นต์ด้วย
 
     ```javascript
     // ไม่ดี
@@ -1201,9 +1307,9 @@
     }
     ```
 
-  - [17.3](#17.3) <a name='17.3'></a> ใส่ `FIXME` หรือ `TODO` ไว้ด้านหน้าคอมเม้นต์ ซึ่งจะช่วยให้ผู้พัฒนาระบบท่านอื่นๆทราบได้ว่าสิ่งเหล่านั้นอาจจะต้องแก้ไข หรือยังไม่ได้ทำ (IDE บางตัวสามารถค้นหาคอมเม้นต์เหล่านี้อัตโนมัติ และบอกถึงสิ่งที่ควรจะแก้ไขหรือทำเพิ่ม)
+  - [18.3](#18.3) <a name='18.3'></a> ใส่ `FIXME` หรือ `TODO` ไว้ด้านหน้าคอมเม้นต์ ซึ่งจะช่วยให้ผู้พัฒนาระบบท่านอื่นๆทราบได้ว่าสิ่งเหล่านั้นอาจจะต้องแก้ไข หรือยังไม่ได้ทำ (IDE บางตัวสามารถค้นหาคอมเม้นต์เหล่านี้อัตโนมัติ และบอกถึงสิ่งที่ควรจะแก้ไขหรือทำเพิ่ม)
 
-  - [17.4](#17.4) <a name='17.4'></a> ใช้ `// FIXME:` เพื่อบอกปัญหา
+  - [18.4](#18.4) <a name='18.4'></a> ใช้ `// FIXME:` เพื่อบอกปัญหา
 
     ```javascript
     class Calculator {
@@ -1214,7 +1320,7 @@
     }
     ```
 
-  - [17.5](#17.5) <a name='17.5'></a> ใช้ `// TODO:` เพื่อบอกแนวทางในการแก้ไขปัญหา (แต่ยังไม่ได้ทำ)
+  - [18.5](#18.5) <a name='18.5'></a> ใช้ `// TODO:` เพื่อบอกแนวทางในการแก้ไขปัญหา (แต่ยังไม่ได้ทำ)
 
     ```javascript
     class Calculator {
@@ -1230,7 +1336,7 @@
 
 ## Whitespace
 
-  - [18.1](#18.1) <a name='18.1'></a> ควรตั้งค่าหนึ่งแท็บเท่ากับสองช่องว่าง (สามารถตั้งค่าใน Editor หรือ IDE ได้)
+  - [19.1](#19.1) <a name='19.1'></a> ควรตั้งค่าหนึ่งแท็บเท่ากับสองช่องว่าง (สามารถตั้งค่าใน Editor หรือ IDE ได้)
 
     ```javascript
     // ไม่ดี
@@ -1249,7 +1355,7 @@
     }
     ```
 
-  - [18.2](#18.2) <a name='18.2'></a> ใส่ช่องว่างก่อนวงเล็บปีกกาเปิด
+  - [19.2](#19.2) <a name='19.2'></a> ใส่ช่องว่างก่อนวงเล็บปีกกาเปิด
 
     ```javascript
     // ไม่ดี
@@ -1275,7 +1381,7 @@
     });
     ```
 
-  - [18.3](#18.3) <a name='18.3'></a> ใส่ช่องว่างก่อนเปิดวงเล็บสำหรับ control statements (`if`, `else`, `while`, และอื่นๆ) แต่สำหรับพารามิเตอร์ไม่ต้องใส่ช่องว่าง
+  - [19.3](#19.3) <a name='19.3'></a> ใส่ช่องว่างก่อนเปิดวงเล็บสำหรับ control statements (`if`, `else`, `while`, และอื่นๆ) แต่สำหรับพารามิเตอร์ไม่ต้องใส่ช่องว่าง
 
     ```javascript
     // ไม่ดี
@@ -1299,7 +1405,7 @@
     }
     ```
 
-  - [18.4](#18.4) <a name='18.4'></a> ใส่ช่องว่างเวลาประกาศตัวแปร
+  - [19.4](#19.4) <a name='19.4'></a> ใส่ช่องว่างเวลาประกาศตัวแปร
 
     ```javascript
     // ไม่ดี
@@ -1309,7 +1415,7 @@
     const x = y + 5;
     ```
 
-  - [18.5](#18.5) <a name='18.5'></a> ลงท้ายไฟล์ด้วยการขึ้นบรรทัดใหม่เสมอ (แค่หนึ่งบรรทัดเท่านั้น)
+  - [19.5](#19.5) <a name='19.5'></a> ลงท้ายไฟล์ด้วยการขึ้นบรรทัดใหม่เสมอ (แค่หนึ่งบรรทัดเท่านั้น)
 
     ```javascript
     // ไม่ดี
@@ -1333,7 +1439,7 @@
     })(this);↵
     ```
 
-  - [18.5](#18.5) <a name='18.5'></a> ใส่ย่อหน้าเวลาเรียกใช้เมท็อตแบบต่อเนื่อง (Method chaining) ให้วางจุด `.` ไว้ด้านหน้าเสมอ เพื่อบอกว่าเป็นการเรียกเมท็อต
+  - [19.5](#19.5) <a name='19.5'></a> ใส่ย่อหน้าเวลาเรียกใช้เมท็อตแบบต่อเนื่อง (Method chaining) ให้วางจุด `.` ไว้ด้านหน้าเสมอ เพื่อบอกว่าเป็นการเรียกเมท็อต
 
     ```javascript
     // ไม่ดี
@@ -1372,7 +1478,7 @@
         .call(tron.led);
     ```
 
-  - [18.6](#18.6) <a name='18.6'></a> ใส่บรรทัดว่างหลังจากจบบล็อก และก่อนที่จะขึ้น statement ใหม่
+  - [19.6](#19.6) <a name='19.6'></a> ใส่บรรทัดว่างหลังจากจบบล็อก และก่อนที่จะขึ้น statement ใหม่
 
     ```javascript
     // ไม่ดี
@@ -1414,7 +1520,7 @@
 
 ## Commas
 
-  - [19.1](#19.1) <a name='19.1'></a> อย่าวางจุลภาค `,` ไว้ด้านหน้า
+  - [20.1](#20.1) <a name='20.1'></a> อย่าวางจุลภาค `,` ไว้ด้านหน้า
 
     ```javascript
     // ไม่ดี
@@ -1448,7 +1554,7 @@
     };
     ```
 
-  - [19.2](#19.2) <a name='19.2'></a> ควรใส่จุลภาค `,` ต่อท้ายพรอพเพอร์ตี้ตัวสุดท้าย
+  - [20.2](#20.2) <a name='20.2'></a> ควรใส่จุลภาค `,` ต่อท้ายพรอพเพอร์ตี้ตัวสุดท้าย
 
   > เพราะว่าเวลาดูใน `git diff` จะเป็นการเพิ่มบรรทัดอย่างเดียว โดยไม่มีการลบบรรทัดก่อนหน้า นอกจากนั้น `Transpilers` เช่น Babel จะลบตัวจุลภาคนี้ออกเองเวลาคอมไพล์ ทำให้ไม่ต้องกังวลเกี่ยวกับ [ปัญหาจุลภาคที่เกินมา](es5/README.md#commas) ในบราวเซอร์เวอร์ชันเก่า
 
@@ -1496,7 +1602,7 @@
 
 ## Semicolons
 
-  - [20.1](#20.1) <a name='20.1'></a> ควรใส่ `;` เมื่อจบ statement
+  - [21.1](#21.1) <a name='21.1'></a> ควรใส่ `;` เมื่อจบ statement
 
     ```javascript
     // ไม่ดี
@@ -1525,8 +1631,8 @@
 
 ## Type Casting & Coercion
 
-  - [21.1](#21.1) <a name='21.1'></a> ทำการแปลงค่าไว้ด้านหน้าสุดเสมอ เพราะเวลาอ่านจะทราบได้ทันที่ว่าค่าที่จะได้ จะเป็นชนิดใด
-  - [21.2](#21.2) <a name='21.2'></a> สตริง:
+  - [22.1](#22.1) <a name='22.1'></a> ทำการแปลงค่าไว้ด้านหน้าสุดเสมอ เพราะเวลาอ่านจะทราบได้ทันที่ว่าค่าที่จะได้ จะเป็นชนิดใด
+  - [22.2](#22.2) <a name='22.2'></a> สตริง:
 
     ```javascript
     //  => this.reviewScore = 9;
@@ -1538,7 +1644,7 @@
     const totalScore = String(this.reviewScore);
     ```
 
-  - [21.3](#21.3) <a name='21.3'></a> เวลาใช้ `parseInt` ในการแปลงค่าให้เป็นตัวเลข ควรจะใส่เลขฐานที่ต้องการแปลงด้วย เพราะถ้าไม่ใส่อาจจะมีข้อผิดพลาดได้ถ้าค่าที่แปลงเป็นสตริงที่ไม่ได้ประกอบไปด้วยตัวเลขทั้งหมด
+  - [22.3](#22.3) <a name='22.3'></a> เวลาใช้ `parseInt` ในการแปลงค่าให้เป็นตัวเลข ควรจะใส่เลขฐานที่ต้องการแปลงด้วย เพราะถ้าไม่ใส่อาจจะมีข้อผิดพลาดได้ถ้าค่าที่แปลงเป็นสตริงที่ไม่ได้ประกอบไปด้วยตัวเลขทั้งหมด
 
     ```javascript
     const inputValue = '4';
@@ -1562,7 +1668,7 @@
     const val = parseInt(inputValue, 10);
     ```
 
-  - [21.4](#21.4) <a name='21.4'></a> ในบางกรณีที่ต้องการให้ได้ประสิทธิภาพสูงสุดด้วยการใช้ Bitshift แทนการแปลงค่าโดยใช้ `parseInt` สามารถอ่านเพิ่มเติมได้ที่ [performance reasons](http://jsperf.com/coercion-vs-casting/3) นอกจากนั้นควรใส่คอมเม้นต์ต่างๆอธิบายเหตุผลไว้ด้วย
+  - [22.4](#22.4) <a name='22.4'></a> ในบางกรณีที่ต้องการให้ได้ประสิทธิภาพสูงสุดด้วยการใช้ Bitshift แทนการแปลงค่าโดยใช้ `parseInt` สามารถอ่านเพิ่มเติมได้ที่ [performance reasons](http://jsperf.com/coercion-vs-casting/3) นอกจากนั้นควรใส่คอมเม้นต์ต่างๆอธิบายเหตุผลไว้ด้วย
 
     ```javascript
     // ดี
@@ -1574,7 +1680,7 @@
     const val = inputValue >> 0;
     ```
 
-  - [21.5](#21.5) <a name='21.5'></a> ควรระวังการใช้งาน bitshift เพราะตัวเลขปกติจะเป็น [64-bit values](http://es5.github.io/#x4.3.19), แต่ Bitshift จะคืนค่าเป็น 32-bit เสมอ ([ที่มา](http://es5.github.io/#x11.7)) Bitshift อาจทำให้ค่าผิดแปลกไปถ้าค่าของตัวเลขใหญ่กว่า 32 bits. [ดูการพูดคุยในเรื่องนี้](https://github.com/airbnb/javascript/issues/109) ตัวเลขที่มากที่สุดของ 32-bit Int คือ 2,147,483,647:
+  - [22.5](#22.5) <a name='22.5'></a> ควรระวังการใช้งาน bitshift เพราะตัวเลขปกติจะเป็น [64-bit values](http://es5.github.io/#x4.3.19), แต่ Bitshift จะคืนค่าเป็น 32-bit เสมอ ([ที่มา](http://es5.github.io/#x11.7)) Bitshift อาจทำให้ค่าผิดแปลกไปถ้าค่าของตัวเลขใหญ่กว่า 32 bits. [ดูการพูดคุยในเรื่องนี้](https://github.com/airbnb/javascript/issues/109) ตัวเลขที่มากที่สุดของ 32-bit Int คือ 2,147,483,647:
 
     ```javascript
     2147483647 >> 0 //=> 2147483647
@@ -1582,7 +1688,7 @@
     2147483649 >> 0 //=> -2147483647 เกินค่ามากที่สุดของ 32-bit Int จึงทำให้เกิดข้อผิดพลาด
     ```
 
-  - [21.6](#21.6) <a name='21.6'></a> Booleans:
+  - [22.6](#22.6) <a name='22.6'></a> Booleans:
 
     ```javascript
     const age = 0;
@@ -1602,7 +1708,7 @@
 
 ## Naming Conventions
 
-  - [22.1](#22.1) <a name='22.1'></a> ควรจะตั้งชื่อให้สื่อความหมาย
+  - [23.1](#23.1) <a name='23.1'></a> ควรจะตั้งชื่อให้สื่อความหมาย
 
     ```javascript
     // ไม่ดี
@@ -1616,7 +1722,7 @@
     }
     ```
 
-  - [22.2](#22.2) <a name='22.2'></a> ใช้ camelCase (ขึ้นต้นด้วยตัวเล็กและคำต่อไปขึ้นต้นด้วยตัวใหญ่) เมื่อต้องการตั้งชื่อออบเจ็กต์, ฟังก์ชัน, และ instance
+  - [23.2](#23.2) <a name='23.2'></a> ใช้ camelCase (ขึ้นต้นด้วยตัวเล็กและคำต่อไปขึ้นต้นด้วยตัวใหญ่) เมื่อต้องการตั้งชื่อออบเจ็กต์, ฟังก์ชัน, และ instance
 
     ```javascript
     // ไม่ดี
@@ -1629,7 +1735,7 @@
     function thisIsMyFunction() {}
     ```
 
-  - [22.3](#22.3) <a name='22.3'></a> ใช้ PascalCase (ขึ้นต้นทุกคำด้วยตัวใหญ่) เมื่อต้องการตั้งชื่อ constructor หรือ class
+  - [23.3](#23.3) <a name='23.3'></a> ใช้ PascalCase (ขึ้นต้นทุกคำด้วยตัวใหญ่) เมื่อต้องการตั้งชื่อ constructor หรือ class
 
     ```javascript
     // ไม่ดี
@@ -1653,7 +1759,7 @@
     });
     ```
 
-  - [22.4](#22.4) <a name='22.4'></a> ขึ้นต้นด้วยขีดล่าง (`_`) เมื่อต้องการตั้งชื่อพรอพเพอร์ตี้ที่เป็น Private
+  - [23.4](#23.4) <a name='23.4'></a> ขึ้นต้นด้วยขีดล่าง (`_`) เมื่อต้องการตั้งชื่อพรอพเพอร์ตี้ที่เป็น Private
 
     ```javascript
     // ไม่ดี
@@ -1664,7 +1770,7 @@
     this._firstName = 'Panda';
     ```
 
-  - [22.5](#22.5) <a name='22.5'></a> อย่าบันทึกค่า `this` ไว้ใช้ ให้ใช้ Arrow functions หรือ Function#bind.
+  - [23.5](#23.5) <a name='23.5'></a> อย่าบันทึกค่า `this` ไว้ใช้ ให้ใช้ Arrow functions หรือ Function#bind.
 
     ```javascript
     // ไม่ดี
@@ -1691,7 +1797,7 @@
     }
     ```
 
-  - [22.6](#22.6) <a name='22.6'></a> ถ้าในไฟล์มีแค่หนึ่งคลาส ให้ตั้งชื่อไฟล์ให้เป็นชื่อเดียวกับชื่อคลาส
+  - [23.6](#23.6) <a name='23.6'></a> ถ้าในไฟล์มีแค่หนึ่งคลาส ให้ตั้งชื่อไฟล์ให้เป็นชื่อเดียวกับชื่อคลาส
     ```javascript
     // file contents
     class CheckBox {
@@ -1710,7 +1816,7 @@
     import CheckBox from './CheckBox';
     ```
 
-  - [22.7](#22.7) <a name='22.7'></a> ใช้ camelCase เมื่อต้องการเอ็กพอร์ตฟังก์ชัน ชื่อไฟล์ควรเป็นชื่อเดียวกับชื่อฟังก์ชัน
+  - [23.7](#23.7) <a name='23.7'></a> ใช้ camelCase เมื่อต้องการเอ็กพอร์ตฟังก์ชัน ชื่อไฟล์ควรเป็นชื่อเดียวกับชื่อฟังก์ชัน
 
     ```javascript
     function makeStyleGuide() {
@@ -1719,7 +1825,7 @@
     export default makeStyleGuide;
     ```
 
-  - [22.8](#22.8) <a name='22.8'></a> ใช้ PascalCase เมื่อเอ็กพอร์ต Singleton / Function library / หรือ Bare object
+  - [23.8](#23.8) <a name='23.8'></a> ใช้ PascalCase เมื่อเอ็กพอร์ต Singleton / Function library / หรือ Bare object
 
     ```javascript
     const AirbnbStyleGuide = {
@@ -1736,8 +1842,8 @@
 
 ## Accessors
 
-  - [23.1](#23.1) <a name='23.1'></a> Accessor functions (ฟังก์ชันที่ใช้ในการเข้าถึงพรอพเพอร์ตี้) ไม่จำเป็นต้องมีก็ได้
-  - [23.2](#23.2) <a name='23.2'></a> แต่ถ้ามีควรจะตั้งชื่อในรูปแบบ getVal() และ setVal('hello')
+  - [24.1](#24.1) <a name='24.1'></a> Accessor functions (ฟังก์ชันที่ใช้ในการเข้าถึงพรอพเพอร์ตี้) ไม่จำเป็นต้องมีก็ได้
+  - [24.2](#24.2) <a name='24.2'></a> แต่ถ้ามีควรจะตั้งชื่อในรูปแบบ getVal() และ setVal('hello')
 
     ```javascript
     // ไม่ดี
@@ -1753,7 +1859,7 @@
     dragon.setAge(25);
     ```
 
-  - [23.3](#23.3) <a name='23.3'></a> ถ้าพรอพเพอร์ตี้เป็นค่าบูลีน (boolean) ให้ใช้ isVal() หรือ hasVal().
+  - [24.3](#24.3) <a name='24.3'></a> ถ้าพรอพเพอร์ตี้เป็นค่าบูลีน (boolean) ให้ใช้ isVal() หรือ hasVal().
 
     ```javascript
     // ไม่ดี
@@ -1767,7 +1873,7 @@
     }
     ```
 
-  - [23.4](#23.4) <a name='23.4'></a> ความจริงแล้วตั้งชื่อ get() และ set() ก็ไม่เสียหายอะไร แต่ต้องตั้งให้เหมือนกันในทุกๆที่
+  - [24.4](#24.4) <a name='24.4'></a> ความจริงแล้วตั้งชื่อ get() และ set() ก็ไม่เสียหายอะไร แต่ต้องตั้งให้เหมือนกันในทุกๆที่
 
     ```javascript
     class Jedi {
@@ -1791,7 +1897,7 @@
 
 ## Events
 
-  - [24.1](#24.1) <a name='24.1'></a> เมื่อทำการเชื่อมต่ออีเว้นต์ ให้ส่งค่าที่เป็นออบเจ็กต์ไป ซึ่งจะดีกว่าการส่งค่าแบบธรรมดา เพราะจะช่วยให้ตัวเมท็อตที่รับค่าสามารถแก้ไขค่าและเพิ่มพรอพเพอร์ตี้ได้ง่ายขึ้น
+  - [25.1](#25.1) <a name='25.1'></a> เมื่อทำการเชื่อมต่ออีเว้นต์ ให้ส่งค่าที่เป็นออบเจ็กต์ไป ซึ่งจะดีกว่าการส่งค่าแบบธรรมดา เพราะจะช่วยให้ตัวเมท็อตที่รับค่าสามารถแก้ไขค่าและเพิ่มพรอพเพอร์ตี้ได้ง่ายขึ้น
 
     ```javascript
     // ไม่ดี
@@ -1820,7 +1926,7 @@
 
 ## jQuery
 
-  - [25.1](#25.1) <a name='25.1'></a> ใส่สัญลักษณ์ `$` ไว้ด้านหน้าตัวแปรทุกตัวที่เป็น jQuery Object
+  - [26.1](#26.1) <a name='26.1'></a> ใส่สัญลักษณ์ `$` ไว้ด้านหน้าตัวแปรทุกตัวที่เป็น jQuery Object
 
     ```javascript
     // ไม่ดี
@@ -1830,7 +1936,7 @@
     const $sidebar = $('.sidebar');
     ```
 
-  - [25.2](#25.2) <a name='25.2'></a> ในกรณีที่ต้องค้นหา DOM โดยใช้ jQuery ควรจะเก็บแคช (Cache) ไว้เสมอ เพราะการค้นหา DOM ซ้ำๆหลายรอบจะส่งผลต่อประสิทธิภาพของโค้ด
+  - [26.2](#26.2) <a name='26.2'></a> ในกรณีที่ต้องค้นหา DOM โดยใช้ jQuery ควรจะเก็บแคช (Cache) ไว้เสมอ เพราะการค้นหา DOM ซ้ำๆหลายรอบจะส่งผลต่อประสิทธิภาพของโค้ด
 
     ```javascript
     // ไม่ดี
@@ -1857,8 +1963,8 @@
     }
     ```
 
-  - [25.3](#25.3) <a name='25.3'></a> เวลาค้นหา DOM ให้ใช้รูปแบบของ Cascading เช่น  `$('.sidebar ul')` หรือ parent > child `$('.sidebar > ul')` -  [jsPerf](http://jsperf.com/jquery-find-vs-context-sel/16)
-  - [25.4](#25.4) <a name='25.4'></a> ใช้ `find` ร่วมกับ jQuery object (ที่เราแคชไว้ก่อนหน้านี้)
+  - [26.3](#26.3) <a name='26.3'></a> เวลาค้นหา DOM ให้ใช้รูปแบบของ Cascading เช่น  `$('.sidebar ul')` หรือ parent > child `$('.sidebar > ul')` -  [jsPerf](http://jsperf.com/jquery-find-vs-context-sel/16)
+  - [26.4](#26.4) <a name='26.4'></a> ใช้ `find` ร่วมกับ jQuery object (ที่เราแคชไว้ก่อนหน้านี้)
 
     ```javascript
     // ไม่ดี
@@ -1882,13 +1988,13 @@
 
 ## ECMAScript 5 Compatibility
 
-  - [26.1](#26.1) <a name='26.1'></a> อ่านเพิ่มเติมได้ที่ [Kangax](https://twitter.com/kangax/)'s ES5 [compatibility table](http://kangax.github.com/es5-compat-table/)
+  - [27.1](#27.1) <a name='27.1'></a> อ่านเพิ่มเติมได้ที่ [Kangax](https://twitter.com/kangax/)'s ES5 [compatibility table](http://kangax.github.com/es5-compat-table/)
 
 **[[⬆ กลับไปด้านบน]](#TOC)**
 
-## ECMAScript 6 Styles
+## ECMAScript 6+ (ES 2015+) Styles
 
-  - [27.1](#27.1) <a name='27.1'></a> อ่านเพิ่มเติมเกี่ยวกับฟีเจอร์ต่างๆของ ES6:
+  - [28.1](#28.1) <a name='28.1'></a> อ่านเพิ่มเติมเกี่ยวกับฟีเจอร์ต่างๆของ ES6:
 
 1. [Arrow Functions](#arrow-functions)
 1. [Classes](#constructors)
@@ -1906,9 +2012,42 @@
 
 **[[⬆ กลับไปด้านบน]](#TOC)**
 
+## Standard Library
+
+  ตัว [Standard Library](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects) มี Utilities หลายตัวที่อาจจะทำงานผิดพลาดหรือไม่ถูกต้องแต่ยังมีให้ใช้อยู่ด้วยเหตุผลทางด้าน Legacy ดังนั้นให้เลือกใช้ตัวที่เหมาะสม
+
+  - [29.1](#29.1) <a name="29.1"></a> ใช้ `Number.isNaN` แทนที่จะใช้ `isNaN` ที่เป็นฟังก์ชัน Global
+
+    > เพราะว่าฟังก์ชั่น `isNaN` ที่เป็น Global จะบีบบังคับค่าที่ไม่ได้เป็น numbers ให้กลายเป็น numbers และ return ค่า true
+
+    ```javascript
+    // ไม่ดี
+    isNaN('1.2'); // false
+    isNaN('1.2.3'); // true
+
+    // ดี
+    Number.isNaN('1.2.3'); // false
+    Number.isNaN(Number('1.2.3')); // true
+    ```
+
+  - [29.2](#29.2) <a name="29.2"></a> ใช้ `Number.isFinite` แทนที่จะใช้ `isFinite` ที่เป็นฟังก์ชั่น Global
+
+    > เพราะว่าฟังก์ชั่น `isFinite` ที่เป็น Global จะบีบบังคับค่าที่ไม่ได้เป็น numbers ให้กลายเป็น numbers และ return ค่า true
+
+    ```javascript
+    // ไม่ดี
+    isFinite('2e3'); // true
+
+    // ดี
+    Number.isFinite('2e3'); // false
+    Number.isFinite(parseInt('2e3', 10)); // true
+    ```
+
+**[[⬆ กลับไปด้านบน]](#TOC)**
+
 ## Testing
 
-  - [28.1](#28.1) <a name='28.1'></a> **Yup.**
+  - [30.1](#30.1) <a name='30.1'></a> **Yup.**
 
     ```javascript
     function() {
@@ -2077,17 +2216,18 @@
   - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [armoucar/javascript-style-guide](https://github.com/armoucar/javascript-style-guide)
   - ![bg](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bulgaria.png) **Bulgarian**: [borislavvv/javascript](https://github.com/borislavvv/javascript)
   - ![ca](https://raw.githubusercontent.com/fpmweb/javascript-style-guide/master/img/catala.png) **Catalan**: [fpmweb/javascript-style-guide](https://github.com/fpmweb/javascript-style-guide)
-  - ![tw](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Taiwan.png) **Chinese(Traditional)**: [jigsawye/javascript](https://github.com/jigsawye/javascript)
-  - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese(Simplified)**: [sivan/javascript-style-guide](https://github.com/sivan/javascript-style-guide)
+  - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: [sivan/javascript-style-guide](https://github.com/sivan/javascript-style-guide)
+  - ![tw](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Taiwan.png) **Chinese (Traditional)**: [jigsawye/javascript](https://github.com/jigsawye/javascript)
   - ![fr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/France.png) **French**: [nmussy/javascript-style-guide](https://github.com/nmussy/javascript-style-guide)
   - ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **German**: [timofurrer/javascript-style-guide](https://github.com/timofurrer/javascript-style-guide)
   - ![it](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Italy.png) **Italian**: [sinkswim/javascript-style-guide](https://github.com/sinkswim/javascript-style-guide)
-  - ![jp](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [mitsuruog/javacript-style-guide](https://github.com/mitsuruog/javacript-style-guide)
+  - ![jp](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [mitsuruog/javascript-style-guide](https://github.com/mitsuruog/javascript-style-guide)
   - ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [tipjs/javascript-style-guide](https://github.com/tipjs/javascript-style-guide)
-  - ![pl](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Poland.png) **Polish**: [mjurczyk/javascript](https://github.com/mjurczyk/javascript)
-  - ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**: [uprock/javascript](https://github.com/uprock/javascript)
+  - ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**: [leonidlebedev/javascript-airbnb](https://github.com/leonidlebedev/javascript-airbnb)
   - ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Spain.png) **Spanish**: [paolocarrasco/javascript-style-guide](https://github.com/paolocarrasco/javascript-style-guide)
   - ![th](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Thailand.png) **Thai**: [lvarayut/javascript-style-guide](https://github.com/lvarayut/javascript-style-guide)
+  - ![ua](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Ukraine.png) **Ukrainian**: [ivanzusko/javascript](https://github.com/ivanzusko/javascript)
+  - ![vn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnam**: [hngiang/javascript-style-guide](https://github.com/hngiang/javascript-style-guide)
 
 ## คู่มือแนะนำการเขียนจาวาสคริปต์
 
@@ -2128,5 +2268,9 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 **[[⬆ กลับไปด้านบน]](#TOC)**
+
+## Amendments
+
+เราแนะนำให้คุณ fork ตัวไกด์นี้และเปลี่ยน rules ให้เหมาะกับสไตล์การเขียนของทีมคุณ คุณสามารถเพิ่มรายชื่อการแก้ไข rules ข้างล่างนี้ได้เพื่อให้สามารถปรับสไตล์เป็นสไตล์ของคุณเองโดยที่ไม่ต้องเจอกับปัญหา merge conflicts
 
 # };
