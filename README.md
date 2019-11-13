@@ -317,7 +317,7 @@
     // ดี
     const itemsCopy = [...items];
     ```
-  - [4.4](#4.4) <a name='4.4'></a> ใช้ฟังก์ชัน Array#form ในการแปลงอ็อบเจ็กต์เป็นอาร์เรย์
+  - [4.4](#4.4) <a name='4.4'></a> ใช้ฟังก์ชัน Array#from ในการแปลงอ็อบเจ็กต์เป็นอาร์เรย์
 
     ```javascript
     const foo = document.querySelectorAll('.foo');
