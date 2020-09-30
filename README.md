@@ -49,7 +49,7 @@
   1. [License](#license)
   1. [Amendments](#amendments)
 
-## Types
+## Types of JavaScripsts
 
   - [1.1](#1.1) <a name='1.1'></a> **Primitives**: เมื่อใช้งานตัวแปรพื้นฐาน (ตัวแปรที่อ้างอิงด้วยค่า) สามารถเข้าใช้งานได้โดยอ้างอิงค่าของตัวแปร
 
