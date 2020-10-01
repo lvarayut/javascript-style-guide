@@ -279,8 +279,8 @@
     })();
     ```
 
-  - อย่าประกาศฟังก์ชันประเภท Function Declaration ไว้ภายใน if, else, while, และอื่นๆ เพราะบราวเซอร์จะตีความหมายผิด ถ้าจำเป็นต้องประกาศ ให้ประกาศในรูปแบบของ Function Expression
-  - **หมายเหตุ:** ECMA-262 บอกไว้ว่าใน if, else, while, และอื่นๆ จะต้องประกอบไปด้วย statements เท่านั้น ซึ่งการประกาศฟังก์ชันประเภท Function Declaration ไม่ใช่ statement [อ่านเพิ่มเติมเกี่ยวกับ  ECMA-262](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97).
+  - อย่าประกาศฟังก์ชันประเภท Function Declaration ไว้ภายใน if, else, while, และอื่น ๆ เพราะบราวเซอร์จะตีความหมายผิด ถ้าจำเป็นต้องประกาศ ให้ประกาศในรูปแบบของ Function Expression
+  - **หมายเหตุ:** ECMA-262 บอกไว้ว่าใน if, else, while, และอื่น ๆ จะต้องประกอบไปด้วย statements เท่านั้น ซึ่งการประกาศฟังก์ชันประเภท Function Declaration ไม่ใช่ statement [อ่านเพิ่มเติมเกี่ยวกับ  ECMA-262](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97).
 
     ```javascript
     // ไม่ดี
